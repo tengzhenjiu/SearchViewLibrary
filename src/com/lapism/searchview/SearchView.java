@@ -509,6 +509,10 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 		mEditText.setText(text);
 	}
 
+	public String getTextInput() {
+		return mEditText.getText().toString();
+	}
+	
 	public void setTextSize(float size) {
 		mEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 	}

@@ -20,11 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.lapism.searchview.dto.Family;
+
 
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultViewHolder> implements Filterable {
 
     protected final SearchHistoryTable mHistoryDatabase;
+    DBManager db;
     protected String key = "";
     protected List<SearchItem> mResultList = new ArrayList<>();
     protected List<SearchItem> mSuggestionsList = new ArrayList<>();
@@ -34,6 +37,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
     public SearchAdapter(Context context) {
         mHistoryDatabase = new SearchHistoryTable(context);
         getFilter().filter("");
+        db=new DBManager(context);
     }
 
     public SearchAdapter(Context context, List<SearchItem> suggestionsList) {
@@ -41,6 +45,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
         mResultList = suggestionsList;
         mHistoryDatabase = new SearchHistoryTable(context);
         getFilter().filter("");
+        db=new DBManager(context);
     }
 
     public List<SearchItem> getSuggestionsList() {
@@ -75,11 +80,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
                     List<SearchItem> results = new ArrayList<>();
                     List<SearchItem> history = new ArrayList<>();
                     List<SearchItem> databaseAllItems = mHistoryDatabase.getAllItems(mDatabaseKey);
+                    List<SearchItem> databaseAllFamily=db.querySearchItem();
                     if (!databaseAllItems.isEmpty()) {
                         history.addAll(databaseAllItems);
                     }
-                    history.addAll(mSuggestionsList);
-
+                    //history.addAll(mSuggestionsList);
+                    history.addAll(databaseAllFamily);
                     for (SearchItem str : history) {
                         String string = str.get_text().toString().toLowerCase(Locale.getDefault());
                         if (string.contains(key)) {
