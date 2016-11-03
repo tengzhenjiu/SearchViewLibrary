@@ -210,7 +210,7 @@ public class DBManager {
 		while (c.moveToNext()) {
 			SearchItem family = new SearchItem();
 			//户主为0
-			family.set_icon(0);
+			family.set_icon(R.drawable.yezhu);
 			family.set_text(c.getString(c.getColumnIndex("AAE135")));
 			familys.add(family);
 		}
