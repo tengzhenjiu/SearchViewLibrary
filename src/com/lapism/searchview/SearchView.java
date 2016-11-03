@@ -28,6 +28,7 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -512,7 +513,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 	public String getTextInput() {
 		return mEditText.getText().toString();
 	}
-	
+
 	public void setTextSize(float size) {
 		mEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
 	}
@@ -742,7 +743,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 		}
 		if (mVersion == VERSION_TOOLBAR) {
 			if (mShouldClearOnClose && mEditText.length() > 0) {
-				//mEditText.getText().clear();
+				// mEditText.getText().clear();
 			}
 			mBackImageView.setImageResource(R.drawable.xiangji);
 			mEditText.clearFocus();

@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <size
         android:width="@dimen/filter_spacing"
-        android:height="0dp" />
+        android:height="1dp" />
 </shape>

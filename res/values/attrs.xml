@@ -43,5 +43,4 @@
         <attr name="search_cursor_drawable" format="integer" />
         <attr name="search_height" format="integer" />
     </declare-styleable>
-
 </resources>

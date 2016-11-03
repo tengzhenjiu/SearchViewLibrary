@@ -109,7 +109,7 @@
                 android:layout_marginLeft="@dimen/filter_margin_start"
                 android:layout_marginRight="@dimen/filter_margin_start"
                 android:layout_marginStart="@dimen/filter_margin_start"
-                android:divider="@drawable/filter_1dp_divider"
+                android:divider="@drawable/filter_empty_divider"
                 android:orientation="horizontal"
                 android:showDividers="middle" />
 
