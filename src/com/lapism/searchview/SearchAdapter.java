@@ -165,7 +165,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
         SearchItem item = mResultList.get(position);
 
         viewHolder.icon_left.setImageResource(item.get_icon());
-        viewHolder.icon_left.setColorFilter(SearchView.getIconColor(), PorterDuff.Mode.SRC_IN);
         viewHolder.text.setTypeface((Typeface.create(SearchView.getTextFont(), SearchView.getTextStyle())));
         viewHolder.text.setTextColor(SearchView.getTextColor());
 
