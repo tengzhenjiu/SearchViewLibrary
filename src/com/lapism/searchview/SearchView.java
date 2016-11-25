@@ -79,7 +79,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 	public static final int TEXT_STYLE_BOLD_ITALIC = 3;
 
 	private static int mIconColor = Color.BLACK;
-	private static int mTextColor = Color.BLACK;
+	private static int mTextColor = Color.RED;
 	private static int mTextHighlightColor = Color.BLACK;
 	private static int mTextStyle = Typeface.NORMAL;
 	private static Typeface mTextFont = Typeface.DEFAULT;

@@ -21,6 +21,7 @@ public class SearchHistoryTable {
 
     public SearchHistoryTable(Context mContext) {
         dbHelper = new SearchHistoryDatabase(mContext);
+        mConnectionCount=0;
     }
 
     // FOR onResume AND onPause

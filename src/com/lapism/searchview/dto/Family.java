@@ -22,6 +22,7 @@ import android.R.integer;
 
 public class Family {
 	public String id;
+	public String lsh;
 	public String edit_jtbh;
 	public String edit_jhzzjlx;
 	public String edit_gmcfzh;
@@ -35,8 +36,8 @@ public class Family {
 	public String edit_hkxxdz;
 	public String edit_djrq;
 	public String xzqh;
-	public String isEdit; // 0δ�޸� 1�޸���
-	public String isUpload;// 0wδ�ϴ� 1���ϴ�
+	public String isEdit = "0"; // 0δ�޸� 1�޸���
+	public String isUpload = "0";// 0wδ�ϴ� 1���ϴ�
 
 	/**
 	 * @param string
@@ -270,6 +271,22 @@ public class Family {
 
 	public void setEdit_jtbh(String edit_jtbh) {
 		this.edit_jtbh = edit_jtbh;
+	}
+
+	public String getXzqh() {
+		return xzqh;
+	}
+
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+
+	public String getLsh() {
+		return lsh;
+	}
+
+	public void setLsh(String lsh) {
+		this.lsh = lsh;
 	}
 
 }
