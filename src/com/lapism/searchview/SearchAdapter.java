@@ -79,8 +79,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 					List<SearchItem> history = new ArrayList<>();
 					List<SearchItem> databaseAllItems = mHistoryDatabase.getAllItems(mDatabaseKey);
 					List<SearchItem> databaseAllFamily = db.querySearchItemFamily();
-/*					List<SearchItem> databaseAllMember = db.querySearchItemMember();
-					List<SearchItem> databaseAllMemberName = db.querySearchItemMemberName();*/
+					//List<SearchItem> databaseAllMember = db.querySearchItemMember();
+					List<SearchItem> databaseAllMemberName = db.querySearchItemMemberName();
 					if (!databaseAllItems.isEmpty()) {
 						history.addAll(databaseAllItems);
 					}
@@ -89,13 +89,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 						history.addAll(databaseAllFamily);
 					}
 					
-				/*	if (!databaseAllMember.isEmpty()) {
+					/*if (!databaseAllMember.isEmpty()) {
 						history.addAll(databaseAllMember);
-					}
+					}*/
 					
 					if (!databaseAllMemberName.isEmpty()) {
 						history.addAll(databaseAllMemberName);
-					}*/
+					}
 					for (SearchItem str : history) {
 						String string = str.get_text().toString().toLowerCase(Locale.getDefault());
 						if (string.contains(key)) {

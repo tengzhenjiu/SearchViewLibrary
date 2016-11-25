@@ -602,14 +602,13 @@ public class DBManager {
 
 	public ArrayList<SearchItem> querySearchItemFamily() {
 		ArrayList<SearchItem> familys = new ArrayList<SearchItem>();
-		String sql = "Select AAE135 from family";
+		String sql = "Select * from family";
 		Cursor c = db.rawQuery(sql, null);
 		while (c.moveToNext()) {
 			SearchItem family = new SearchItem();
 			// 户主为0
 			family.set_icon(R.drawable.yezhu);
-			// family.set_name(c.getString(c.getColumnIndex("AAB400")));
-			family.set_text(c.getString(c.getColumnIndex("AAE135")));
+			family.set_text(c.getString(c.getColumnIndex("AAE135"))+"\t\t\t"+c.getString(c.getColumnIndex("AAB400")));
 			familys.add(family);
 		}
 		c.close();
@@ -624,7 +623,6 @@ public class DBManager {
 			SearchItem family = new SearchItem();
 			// 户主为0
 			family.set_icon(R.drawable.member);
-			family.set_name(c.getString(c.getColumnIndex("AAC003")));
 			family.set_text(c.getString(c.getColumnIndex("AAE135")));
 			familys.add(family);
 		}
@@ -634,14 +632,13 @@ public class DBManager {
 
 	public ArrayList<SearchItem> querySearchItemMemberName() {
 		ArrayList<SearchItem> familys = new ArrayList<SearchItem>();
-		String sql = "Select AAC003 from personal";
+		String sql = "Select * from personal";
 		Cursor c = db.rawQuery(sql, null);
 		while (c.moveToNext()) {
 			SearchItem family = new SearchItem();
 			// 户主为0
 			family.set_icon(R.drawable.member);
-			family.set_text(c.getString(c.getColumnIndex("AAC003")));
-			family.set_num(c.getString(c.getColumnIndex("AAE135")));
+			family.set_text(c.getString(c.getColumnIndex("AAE135"))+"\t\t\t"+c.getString(c.getColumnIndex("AAC003")));
 			familys.add(family);
 		}
 		c.close();
