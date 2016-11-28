@@ -10,14 +10,14 @@ import android.R.integer;
 /**
  * @Title FamilyDTO
  * @author tengzj
- * @data 2016��8��24�� ����9:59:35
+ * @data 2016年8月24日 上午9:59:35
  */
 
 /*
- * ��ͥ��Ϣ ��� �ֶ����� ���� ���� ���� �ǿ� ��ע AAB999 ��ͥ��� Varchar2 16 Ϊ�մ����µǼǼ�ͥ AAB400 ��������
- * Varchar2 50 �� AAC058 ����֤������ Varchar2 3 �� ������� AAE135 ����֤������ Varchar2 20 ��
- * AAB401 ������� Varchar2 20 BAB041 �α����� number 3 AAE005 ��ϵ�绰 Varchar2 50 AAE006
- * סַ Varchar2 100 AAB050 �Ǽ����� Varchar2 10 �� ��ʽ��yyyymmdd
+ * 家庭信息 序号 字段名称 描述 类型 长度 非空 备注 AAB999 家庭编号 Varchar2 16 为空代表新登记家庭 AAB400 户主姓名
+ * Varchar2 50 √ AAC058 户主证件类型 Varchar2 3 √ 见代码表 AAE135 户主证件号码 Varchar2 20 √
+ * AAB401 户籍编号 Varchar2 20 BAB041 参保人数 number 3 AAE005 联系电话 Varchar2 50 AAE006
+ * 住址 Varchar2 100 AAB050 登记日期 Varchar2 10 √ 格式：yyyymmdd
  */
 
 public class Family {
@@ -34,23 +34,24 @@ public class Family {
 	public String edit_yzbm;
 	public String edit_cjqtbxrs;
 	public String edit_hkxxdz;
+	public String edit_jtxxdz;
 	public String edit_djrq;
 	public String xzqh;
-	public String isEdit = "0"; // 0δ�޸� 1�޸���
-	public String isUpload = "0";// 0wδ�ϴ� 1���ϴ�
+	public String isEdit = "0"; // 0未修改 1修改了
+	public String isUpload = "0";// 0w未上传 1已上传
 
 	/**
 	 * @param string
 	 * @param string2
 	 * @param string3
 	 * @param string4
-	 *            /* ��ͥ��Ϣ ��� �ֶ����� ���� ���� ���� �ǿ� ��ע AAB999 ��ͥ��� Varchar2 16
-	 *            Ϊ�մ����µǼǼ�ͥ getEdit_hzxm AAB400 �������� Varchar2 50 �� AAC058 ����֤������
-	 *            Varchar2 3 �� ������� getEdit_gmcfzh AAE135 ����֤������ Varchar2 20 ��
-	 *            AAB401 ������� Varchar2 20 getEdit_cjqtbxrs BAB041 �α����� number 3
-	 *            getEdit_lxdh AAE005 ��ϵ�绰 Varchar2 50 getEdit_hkxxdz AAE006 סַ
-	 *            Varchar2 100 getEdit_djrq AAB050 �Ǽ����� Varchar2 10 ��
-	 *            ��ʽ��yyyymmdd
+	 *            /* 家庭信息 序号 字段名称 描述 类型 长度 非空 备注 AAB999 家庭编号 Varchar2 16
+	 *            为空代表新登记家庭 getEdit_hzxm AAB400 户主姓名 Varchar2 50 √ AAC058 户主证件类型
+	 *            Varchar2 3 √ 见代码表 getEdit_gmcfzh AAE135 户主证件号码 Varchar2 20 √
+	 *            AAB401 户籍编号 Varchar2 20 getEdit_cjqtbxrs BAB041 参保人数 number 3
+	 *            getEdit_lxdh AAE005 联系电话 Varchar2 50 getEdit_hkxxdz AAE006 住址
+	 *            Varchar2 100 getEdit_djrq AAB050 登记日期 Varchar2 10 √
+	 *            格式：yyyymmdd
 	 */
 	public Family(String edit_gmcfzh, String edit_jgszcwh, String edit_hzxm, String edit_hjbh, String edit_lxdh) {
 		// TODO Auto-generated constructor stub
@@ -287,6 +288,14 @@ public class Family {
 
 	public void setLsh(String lsh) {
 		this.lsh = lsh;
+	}
+
+	public String getEdit_jtxxdz() {
+		return edit_jtxxdz;
+	}
+
+	public void setEdit_jtxxdz(String edit_jtxxdz) {
+		this.edit_jtxxdz = edit_jtxxdz;
 	}
 
 }

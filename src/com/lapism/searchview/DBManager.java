@@ -18,36 +18,36 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /*
-家庭信息
-序号	字段名称	描述	类型	长度	非空	备注
-				AAB999	家庭编号	Varchar2	16		为空代表新登记家庭
-getEdit_hzxm	AAB400	户主姓名	Varchar2	50	√	
-getEdit_jhzzjlx	AAC058	户主证件类型	Varchar2	3	√	见代码表
-getEdit_gmcfzh	AAE135	户主证件号码	Varchar2	20	√	
-				AAB401	户籍编号	Varchar2	20		
-getEdit_cjqtbxrs	BAB041	参保人数	number	3		
-getEdit_lxdh	AAE005	联系电话	Varchar2	50		
-getEdit_hkxxdz	AAE006	住址	Varchar2	100		
-getEdit_djrq	AAB050	登记日期	Varchar2	10	√	格式：yyyymmdd
+��ͥ��Ϣ
+���	�ֶ�����	����	����	����	�ǿ�	��ע
+				AAB999	��ͥ���	Varchar2	16		Ϊ�մ����µǼǼ�ͥ
+getEdit_hzxm	AAB400	��������	Varchar2	50	��	
+getEdit_jhzzjlx	AAC058	����֤������	Varchar2	3	��	�������
+getEdit_gmcfzh	AAE135	����֤������	Varchar2	20	��	
+				AAB401	�������	Varchar2	20		
+getEdit_cjqtbxrs	BAB041	�α�����	number	3		
+getEdit_lxdh	AAE005	��ϵ�绰	Varchar2	50		
+getEdit_hkxxdz	AAE006	סַ	Varchar2	100		
+getEdit_djrq	AAB050	�Ǽ�����	Varchar2	10	��	��ʽ��yyyymmdd
 
-人员信息
-序号	字段名称	描述	类型	长度	非空	备注
-				AAC999	个人编号	Varchar2	16		为空代表新登记人员
-getEdit_cbrxm	AAC003	姓名	Varchar2	50	√	
-getEdit_zjlx	AAC058	证件类型	Varchar2	3	√	见代码表
-getEdit_gmcfzh	AAE135	公民身份号码	Varchar2	20	√	
-getEdit_mz		AAC005	民族	Varchar2	3	√	见代码表
+��Ա��Ϣ
+���	�ֶ�����	����	����	����	�ǿ�	��ע
+				AAC999	���˱��	Varchar2	16		Ϊ�մ����µǼ���Ա
+getEdit_cbrxm	AAC003	����	Varchar2	50	��	
+getEdit_zjlx	AAC058	֤������	Varchar2	3	��	�������
+getEdit_gmcfzh	AAE135	������ݺ���	Varchar2	20	��	
+getEdit_mz		AAC005	����	Varchar2	3	��	�������
 	
-getEdit_xb		AAC004	性别	Varchar2	3	√	见代码表
-getEdit_csrq	AAC006	出生日期	Varchar2	10	√	格式：yyyymmdd
-getEdit_cbrylb	BAC067	参保人员类别	Varchar2	3	√	见代码表
-getEdit_cbrq	AAC030	登记日期	Varchar2	10	√	格式：yyyymmdd
-getEdit_yhzgx	AAC069	与户主关系	Varchar2	3		见代码表
+getEdit_xb		AAC004	�Ա�	Varchar2	3	��	�������
+getEdit_csrq	AAC006	��������	Varchar2	10	��	��ʽ��yyyymmdd
+getEdit_cbrylb	BAC067	�α���Ա���	Varchar2	3	��	�������
+getEdit_cbrq	AAC030	�Ǽ�����	Varchar2	10	��	��ʽ��yyyymmdd
+getEdit_yhzgx	AAC069	�뻧����ϵ	Varchar2	3		�������
 	
-getEdit_lxdh	AAE005	联系电话	Varchar2	50		
-getEdit_xxjzdz	AAE006	住址	Varchar2	100		
-getEdit_hkxz	AAC009	户口性质	Varchar2	3		见代码表
-getHZSFZ		HZSFZ	户主身份号码	Varchar2	20	√	*/
+getEdit_lxdh	AAE005	��ϵ�绰	Varchar2	50		
+getEdit_xxjzdz	AAE006	סַ	Varchar2	100		
+getEdit_hkxz	AAC009	��������	Varchar2	3		�������
+getHZSFZ		HZSFZ	������ݺ���	Varchar2	20	��	*/
 
 public class DBManager {
 	private DBHelper helper;
@@ -55,9 +55,9 @@ public class DBManager {
 
 	public DBManager(Context context) {
 		helper = new DBHelper(context);
-		// 因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0,
+		// ��ΪgetWritableDatabase�ڲ�������mContext.openOrCreateDatabase(mName, 0,
 		// mFactory);
-		// 所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里
+		// ����Ҫȷ��context�ѳ�ʼ��,���ǿ��԰�ʵ����DBManager�Ĳ������Activity��onCreate��
 		db = helper.getWritableDatabase();
 	}
 
@@ -67,19 +67,19 @@ public class DBManager {
 	 * @param persons
 	 */
 	public void addUser(List<User> list) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 			for (User user : list) {
 				db.execSQL("REPLACE INTO user  VALUES( null, ?,?)", new Object[] { user.username, user.password });
 			}
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addUserDetail(List<UserDetail> list) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 			for (UserDetail userDetail : list) {
 				db.execSQL("INSERT INTO userdetail  VALUES( ?, ?,?, ?,?, ?,?, ?,?, ?)",
@@ -87,17 +87,17 @@ public class DBManager {
 								userDetail.downloadflag, userDetail.sfcl, userDetail.taskdesc, userDetail.taskstatus,
 								userDetail.uploadflag, userDetail.validcfcburl });
 			}
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addPersonal(List<Personal> personals) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 			for (Personal personal : personals) {
-				// 14个字段
+				// 14���ֶ�
 				db.execSQL("REPLACE INTO personal VALUES(null,?, ?,?,?,?,?,   ?,?,?,?,?  ,?,?,?,?,?  ,?,?)",
 						new Object[] { personal.getLsh(), personal.getEdit_grbh(), personal.getEdit_cbrxm(),
 								personal.getEdit_zjlx(), personal.getEdit_gmcfzh(), personal.getEdit_mz(),
@@ -106,64 +106,64 @@ public class DBManager {
 								personal.getEdit_xxjzdz(), personal.getEdit_hkxz(), personal.getEdit_jf(),
 								personal.getHZSFZ(), personal.getIsEdit(), personal.getIsUpload() });
 			}
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addFamily(List<Family> familys) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
-			// 9个字段
+			// 9���ֶ�
 			for (Family family : familys) {
-				db.execSQL("REPLACE INTO family VALUES(null,?, ?,?,?,?,?   ,?,?,?,?,?,  ?,?)",
+				db.execSQL("REPLACE INTO family VALUES(null,?, ?,?,?,?,?   ,?,?,?,?,?,  ?,?,?)",
 						new Object[] { family.getLsh(), family.getEdit_jtbh(), family.getEdit_hzxm(),
 								family.getEdit_jhzzjlx(), family.getEdit_gmcfzh(), family.getEdit_hjbh(),
-								family.getEdit_cjqtbxrs(), family.getEdit_lxdh(), family.getEdit_hkxxdz(),
+								family.getEdit_cjqtbxrs(), family.getEdit_lxdh(), family.getEdit_hkxxdz(),family.getEdit_jtxxdz(),
 								family.getEdit_djrq(), family.getIsEdit(), family.isUpload, family.getXzqh() });
 			}
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addCode(List<Code> list) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 			for (Code code : list) {
 				db.execSQL("REPLACE INTO code  VALUES( null, ?,?,?,?)",
 						new Object[] { code.AAA100, code.AAA101, code.AAA103, code.AAA102 });
 			}
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addXzqh(Xzqh xzqh) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 
 			db.execSQL("REPLACE INTO xzqh VALUES( null, ?,?,?,?,  ?,?,?,?)",
 					new Object[] { xzqh.getCountry(), xzqh.getTown(), xzqh.getCounty(), xzqh.getCity(),
 							xzqh.getProvince(), xzqh.getName(), xzqh.getSfcl(), xzqh.getCjzt() });
 
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
 	public void addUrl(CJUrl u) {
-		db.beginTransaction(); // 开始事务
+		db.beginTransaction(); // ��ʼ����
 		try {
 			db.execSQL("REPLACE INTO url  VALUES( null, ?,?,?)",
 					new Object[] { u.getCjarea(), u.getName(), u.getUrl() });
-			db.setTransactionSuccessful(); // 设置事务成功完成
+			db.setTransactionSuccessful(); // ��������ɹ����
 		} finally {
-			db.endTransaction(); // 结束事务
+			db.endTransaction(); // ��������
 		}
 	}
 
@@ -363,6 +363,7 @@ public class DBManager {
 			family.edit_hjbh = c.getString(c.getColumnIndex("AAB401"));
 			family.edit_cjqtbxrs = c.getString(c.getColumnIndex("BAB041"));
 			family.edit_lxdh = c.getString(c.getColumnIndex("AAE005"));
+			family.edit_jtxxdz = c.getString(c.getColumnIndex("AAC010"));
 			family.edit_hkxxdz = c.getString(c.getColumnIndex("AAE006"));
 			family.edit_djrq = c.getString(c.getColumnIndex("AAB050"));
 			family.xzqh = c.getString(c.getColumnIndex("XZQH"));
@@ -389,7 +390,8 @@ public class DBManager {
 			family.edit_hjbh = c.getString(c.getColumnIndex("AAB401"));
 			family.edit_cjqtbxrs = c.getString(c.getColumnIndex("BAB041"));
 			family.edit_lxdh = c.getString(c.getColumnIndex("AAE005"));
-			family.edit_hkxxdz = c.getString(c.getColumnIndex("AAE006"));
+			family.edit_hkxxdz = c.getString(c.getColumnIndex("AAC010"));
+			family.edit_jtxxdz = c.getString(c.getColumnIndex("AAE006"));
 			family.edit_djrq = c.getString(c.getColumnIndex("AAB050"));
 			family.xzqh = c.getString(c.getColumnIndex("XZQH"));
 			family.isEdit = c.getString(c.getColumnIndex("ISEDIT"));
@@ -414,7 +416,8 @@ public class DBManager {
 			family.edit_hjbh = c.getString(c.getColumnIndex("AAB401"));
 			family.edit_cjqtbxrs = c.getString(c.getColumnIndex("BAB041"));
 			family.edit_lxdh = c.getString(c.getColumnIndex("AAE005"));
-			family.edit_hkxxdz = c.getString(c.getColumnIndex("AAE006"));
+			family.edit_hkxxdz = c.getString(c.getColumnIndex("AAC010"));
+			family.edit_jtxxdz = c.getString(c.getColumnIndex("AAE006"));
 			family.edit_djrq = c.getString(c.getColumnIndex("AAB050"));
 			family.xzqh = c.getString(c.getColumnIndex("XZQH"));
 			family.isEdit = c.getString(c.getColumnIndex("ISEDIT"));
@@ -457,8 +460,21 @@ public class DBManager {
 
 		return personals;
 	}
+	
+	public String queryTime(String HZSFZ) {
+		String date = null;
+		String sql = "Select * from personal where HZSFZ='" + HZSFZ + "'order by AAC030 desc limit 1";
+		Cursor c = db.rawQuery(sql, null);
+		if (c != null) {
+			while (c.moveToNext()) {
+				date = c.getString(c.getColumnIndex("AAC030"));
+			}
+			c.close();
+		}
+		return date;
+	}
 
-	// 通过家庭编号
+	// ͨ����ͥ���
 	public ArrayList<Personal> queryPersonal(String HZSFZ) {
 		ArrayList<Personal> personals = new ArrayList<Personal>();
 		String sql = " Select * from personal where HZSFZ='" + HZSFZ + "'";
@@ -492,7 +508,7 @@ public class DBManager {
 		return personals;
 	}
 
-	// 通过家庭编号
+	// ͨ����ͥ���
 	public Personal queryPersonalByGmsfzh(String gmsfzh) {
 		String sql = " Select * from personal where AAE135='" + gmsfzh + "'";
 		Cursor c = db.rawQuery(sql, null);
@@ -524,7 +540,7 @@ public class DBManager {
 		return personal;
 	}
 
-	// 查询单个字段2016年10月13日17:36:11
+	// ��ѯ�����ֶ�2016��10��13��17:36:11
 	public String query_usern(Context context, String variable) {
 		String account1 = "";
 		String sql = " Select * from userdetail where account='" + variable + "'";
@@ -557,7 +573,7 @@ public class DBManager {
 
 	}
 
-	// 下载标志位置1/上传标志位置1/2016年11月2日10:44:30
+	// ���ر�־λ��1/�ϴ���־λ��1/2016��11��2��10:44:30
 	public void update_df(Context context, String Code, String flag, String flag2) {
 		String cjarea1 = "";
 		String sql = "update userdetail set '" + flag + "'='" + flag2 + "' where cjarea='" + Code + "'";
@@ -646,4 +662,3 @@ public class DBManager {
 	}
 
 }
-
