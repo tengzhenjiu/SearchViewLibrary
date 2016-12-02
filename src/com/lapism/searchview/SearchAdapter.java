@@ -31,6 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 	protected List<SearchItem> mSuggestionsList = new ArrayList<>();
 	protected List<OnItemClickListener> mItemClickListeners;
 	private Integer mDatabaseKey;
+	String data;
 
 	public SearchAdapter(Context context) {
 		mHistoryDatabase = new SearchHistoryTable(context);
@@ -38,12 +39,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 		db = new DBManager(context);
 	}
 
-	public SearchAdapter(Context context, List<SearchItem> suggestionsList) {
+	public SearchAdapter(Context context, List<SearchItem> suggestionsList, String data) {
 		mSuggestionsList = suggestionsList;
 		mResultList = suggestionsList;
 		mHistoryDatabase = new SearchHistoryTable(context);
 		getFilter().filter("");
 		db = new DBManager(context);
+		this.data = data;
 	}
 
 	public List<SearchItem> getSuggestionsList() {
@@ -78,23 +80,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 					List<SearchItem> results = new ArrayList<>();
 					List<SearchItem> history = new ArrayList<>();
 					List<SearchItem> databaseAllItems = mHistoryDatabase.getAllItems(mDatabaseKey);
-					List<SearchItem> databaseAllFamily = db.querySearchItemFamily();
-					//List<SearchItem> databaseAllMember = db.querySearchItemMember();
-					List<SearchItem> databaseAllMemberName = db.querySearchItemMemberName();
+					List<SearchItem> databaseAllFamily = db.querySearchItemFamily(data);
+					// List<SearchItem> databaseAllMember =
+					// db.querySearchItemMember();
 					if (!databaseAllItems.isEmpty()) {
 						history.addAll(databaseAllItems);
 					}
 					// history.addAll(mSuggestionsList);
 					if (!databaseAllFamily.isEmpty()) {
 						history.addAll(databaseAllFamily);
-					}
-					
-					/*if (!databaseAllMember.isEmpty()) {
-						history.addAll(databaseAllMember);
-					}*/
-					
-					if (!databaseAllMemberName.isEmpty()) {
-						history.addAll(databaseAllMemberName);
 					}
 					for (SearchItem str : history) {
 						String string = str.get_text().toString().toLowerCase(Locale.getDefault());
@@ -224,15 +218,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ResultView
 
 		final protected ImageView icon_left;
 		final protected TextView text;
-/*		final protected TextView name;
-		final protected TextView num;*/
+		/*
+		 * final protected TextView name; final protected TextView num;
+		 */
 
 		public ResultViewHolder(View view) {
 			super(view);
 			icon_left = (ImageView) view.findViewById(R.id.imageView_item_icon_left);
 			text = (TextView) view.findViewById(R.id.textView_item_text);
-/*			name = (TextView) view.findViewById(R.id.textView_item_name);
-			num = (TextView) view.findViewById(R.id.textView_item_num);*/
+			/*
+			 * name = (TextView) view.findViewById(R.id.textView_item_name); num
+			 * = (TextView) view.findViewById(R.id.textView_item_num);
+			 */
 			view.setOnClickListener(this);
 		}
 
