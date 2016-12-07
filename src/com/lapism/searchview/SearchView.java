@@ -753,6 +753,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 	public void addFocus() {
 		mIsSearchOpen = true;
 		setArrow();
+		mBackImageView.setImageDrawable(mSearchArrow);
 		showSuggestions();
 		if (mShadow) {
 			SearchAnimator.fadeIn(mShadowView, mAnimationDuration);
@@ -1039,6 +1040,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 		if (v == mBackImageView) {
 			if (mSearchArrow != null && mIsSearchArrowHamburgerState == SearchArrowDrawable.STATE_ARROW) {
 				close(true);
+				removeFocus();
 				mBackImageView.setImageResource(R.drawable.xiangji);
 			} else {
 				if (mOnMenuClickListener != null) {
