@@ -1057,6 +1057,7 @@ public class SearchView extends FrameLayout implements View.OnClickListener {
 			}
 		} else if (v == mShadowView) {
 			close(true);
+			removeFocus();
 		}
 	}
 
